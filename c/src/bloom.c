@@ -56,7 +56,7 @@ void bloom_add_str(char *filter,
     bloom_add(filter, filter_bit_count, num_hashes, str, strlen(str));
 }
 
-bool bloom_possibly_contains(char *filter,
+bool bloom_contains(char *filter,
                              size_t filter_bit_count,
                              int num_hashes,
                              const char *data,
@@ -69,19 +69,19 @@ bool bloom_possibly_contains(char *filter,
     return true;
 }
 
-bool bloom_possibly_contains_str(char *filter,
+bool bloom_contains_str(char *filter,
                                  size_t filter_bit_count,
                                  int num_hashes,
                                  const char *str) {
 
-    return bloom_possibly_contains(filter,
+    return bloom_contains(filter,
                                    filter_bit_count,
                                    num_hashes,
                                    str,
                                    strlen(str));
 }
 
-bool bloom_possibly_contains_str_i(char *filter,
+bool bloom_contains_str_i(char *filter,
                                    size_t filter_bit_count,
                                    int num_hashes,
                                    const char *str){
@@ -90,7 +90,7 @@ bool bloom_possibly_contains_str_i(char *filter,
     char *key = alloca(key_len);
     str_to_lower(key, str);
 
-    return bloom_possibly_contains(filter,
+    return bloom_contains(filter,
                                    filter_bit_count,
                                    num_hashes,
                                    key,

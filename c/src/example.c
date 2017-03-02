@@ -14,7 +14,7 @@ int main() {
     bloom_add_str(filter, bits, k, "Beaver");
     bloom_add_str(filter, bits, k, "Bee");
 
-    printf("Dog: %d\n", bloom_possibly_contains_str(filter, bits, k, "Dog"));
-    printf("Bear: %d\n", bloom_possibly_contains_str(filter, bits, k, "Bear"));
-    printf("Bea: %d\n", bloom_possibly_contains_str(filter, bits, k, "Bea"));
+    printf("Dog: %d\n", bloom_contains_str(filter, bits, k, "Dog"));
+    printf("Bear: %d\n", bloom_contains_str(filter, bits, k, "Bear"));
+    printf("Bea: %d\n", bloom_contains_str(filter, bits, k, "Bea"));
 }

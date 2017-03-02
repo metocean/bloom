@@ -237,28 +237,28 @@ int main() {
     bloom_add_str(filter, bits, k, "Yak");
     bloom_add_str(filter, bits, k, "Zebra");
 
-    printf("%d\n", bloom_possibly_contains_str(filter, bits, k, "Fish"));
-    printf("%d\n", bloom_possibly_contains_str(filter, bits, k, "Dog"));
-    printf("%d\n", bloom_possibly_contains_str(filter, bits, k, "Cat"));
-    printf("%d\n", bloom_possibly_contains_str(filter, bits, k, "at"));
-    printf("%d\n", bloom_possibly_contains_str(filter, bits, k, "fis"));
-    printf("%d\n", bloom_possibly_contains_str(filter, bits, k, "is"));
-    printf("%d\n", bloom_possibly_contains_str(filter, bits, k, "Donkey"));
-    printf("%d\n", bloom_possibly_contains_str(filter, bits, k, "Zebra"));
+    printf("%d\n", bloom_contains_str(filter, bits, k, "Fish"));
+    printf("%d\n", bloom_contains_str(filter, bits, k, "Dog"));
+    printf("%d\n", bloom_contains_str(filter, bits, k, "Cat"));
+    printf("%d\n", bloom_contains_str(filter, bits, k, "at"));
+    printf("%d\n", bloom_contains_str(filter, bits, k, "fis"));
+    printf("%d\n", bloom_contains_str(filter, bits, k, "is"));
+    printf("%d\n", bloom_contains_str(filter, bits, k, "Donkey"));
+    printf("%d\n", bloom_contains_str(filter, bits, k, "Zebra"));
 
-    // for (int i = 0; i < 290000; i++) {
-    for (int i = 0; i < 10000; i++) {
-        bloom_possibly_contains_str(filter, bits, k, "Fish");
-        bloom_possibly_contains_str(filter, bits, k, "Donkey");
-        bloom_possibly_contains_str(filter, bits, k, "Woodpecker");
-        bloom_possibly_contains_str(filter, bits, k, "Salamander");
-        bloom_possibly_contains_str(filter, bits, k, "Prairie");
-        bloom_possibly_contains_str(filter, bits, k, "Rhinoceros");
-        bloom_possibly_contains_str(filter, bits, k, "Porcupine");
-        bloom_possibly_contains_str(filter, bits, k, "Hummingbird");
-        bloom_possibly_contains_str(filter, bits, k, "Komodo dragon");
-        bloom_possibly_contains_str(filter, bits, k, "Beaver");
-
+    int count = 600000;
+    for (int i = 0; i < count; i++) {
+        bloom_contains_str(filter, bits, k, "Fish");
+        bloom_contains_str(filter, bits, k, "Donkey");
+        bloom_contains_str(filter, bits, k, "Woodpecker");
+        bloom_contains_str(filter, bits, k, "Salamander");
+        bloom_contains_str(filter, bits, k, "Prairie");
+        bloom_contains_str(filter, bits, k, "Rhinoceros");
+        bloom_contains_str(filter, bits, k, "Porcupine");
+        bloom_contains_str(filter, bits, k, "Hummingbird");
+        bloom_contains_str(filter, bits, k, "Komodo dragon");
+        bloom_contains_str(filter, bits, k, "Beaver");
     }
+    printf("tested %d\n", count * 10);
     return 0;
 }
