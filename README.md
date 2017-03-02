@@ -27,3 +27,9 @@ int main() {
     printf("Bea: %d\n", bloom_possibly_contains_str(filter, bits, k, "Bea"));
 }
 ```
+output:
+```
+Dog: 0
+Bear: 1
+Bea: 0
+```
