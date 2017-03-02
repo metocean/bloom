@@ -1,5 +1,3 @@
-# Makefile template for shared library
-
 SRC_FILES := $(wildcard src/*.c)
 OBJ_FILES := $(addprefix obj/,$(notdir $(SRC_FILES:.c=.o)))
 BASE_DIR=`pwd`
