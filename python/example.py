@@ -1,7 +1,6 @@
 import gbloom
 from datetime import datetime
 
-
 k=20
 bits=1100*8
 filter = gbloom.Bloom(bits, k)
