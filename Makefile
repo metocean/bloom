@@ -15,8 +15,7 @@ libbloom.so: obj/city.o obj/bloom.o
 	$(MKDIRS)
 	gcc -shared -o bin/$@ $^
 
-tests:
-	$(MKDIRS)
+tests: libbloom.so
 	gcc -I$(SRC_DIR) -L$(BIN_DIR) src/tests.c -o bin/$@ -lbloom
 
 obj/%.o: src/%.c
