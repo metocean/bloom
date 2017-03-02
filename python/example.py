@@ -13,20 +13,7 @@ filter.add('person')
 filter.add('plane')
 filter.prints()
 
-print filter.contains('dog')
-print filter.contains('fish')
-print filter.contains('cat')
-print filter.contains('at')
-
-count = 100000
-s = datetime.now()
-for i in range(0, count):
-    filter.contains('fish')
-    filter.contains('dog')
-    filter.contains('cat')
-    filter.contains('person')
-    filter.contains('plane')
-td = datetime.now() - s
-taken = float(td.seconds) + (float(td.microseconds) / 1000000)
-print taken / (count * 5)
-
+print(filter.contains('dog'))
+print(filter.contains('fish'))
+print(filter.contains('cat'))
+print(filter.contains('at'))
