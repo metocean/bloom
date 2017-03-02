@@ -18,4 +18,4 @@ Parameters used:
   
 Results:  
 * C: 6,000,000 contains / second.
-* Python: 180,000 contains / second.
+* Python: 1,700,000 contains / second.
