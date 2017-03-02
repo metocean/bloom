@@ -1,24 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * File:   main.c
- * Author: gregc
- *
- * Created on March 1, 2017, 11:03 AM
- */
-
 #include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
 #include <string.h>
-#include <inttypes.h>
-#include "city.h"
 #include "bloom.h"
-
 
 int main() {
 
@@ -264,7 +246,8 @@ int main() {
     printf("%d\n", bloom_possibly_contains_str(filter, bits, k, "Donkey"));
     printf("%d\n", bloom_possibly_contains_str(filter, bits, k, "Zebra"));
 
-    for (int i = 0; i < 290000; i++) {
+    // for (int i = 0; i < 290000; i++) {
+    for (int i = 0; i < 10000; i++) {
         bloom_possibly_contains_str(filter, bits, k, "Fish");
         bloom_possibly_contains_str(filter, bits, k, "Donkey");
         bloom_possibly_contains_str(filter, bits, k, "Woodpecker");

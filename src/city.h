@@ -31,7 +31,7 @@
 // This is a C version of cityhash v1.1.1, I didn't include the crc32 / sse4.2
 // version at the moment as I don't really need it.
 //
-// https://github.com/google/cityhash 
+// https://github.com/google/cityhash
 // rev: 8af9b8c2b889d80c22d6bc26ba0df1afb79a30db
 // CityHash v1.1.1
 //

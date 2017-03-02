@@ -1,33 +1,33 @@
 SRC_FILES := $(wildcard src/*.c)
 OBJ_FILES := $(addprefix obj/,$(notdir $(SRC_FILES:.c=.o)))
 BASE_DIR=`pwd`
-OBJECT_DIR=$(BASE_DIR)/obj
+BIN_DIR=$(BASE_DIR)/bin
+SRC_DIR=$(BASE_DIR)/src
 MKDIRS := $(shell mkdir -p obj bin)
 
-CC = gcc
-LD_FLAGS := -fPIC -Wall -Wextra
-CC_FLAGS := -fPIC -Wall -Wextra -O2 -g -MMD
+all: example libbloom.so tests
 
-all: libbloom.so main
+example: obj/example.o obj/bloom.o obj/city.o
+	$(MKDIRS)
+	gcc -o bin/$@ $^
 
 libbloom.so: obj/city.o obj/bloom.o
 	$(MKDIRS)
-	$(CC) $(LD_FLAGS) -shared -o bin/$@ $^
+	gcc -shared -o bin/$@ $^
 
-main: $(OBJ_FILES)
+tests:
 	$(MKDIRS)
-	$(CC) $(LD_FLAGS) -o bin/$@ $^
+	gcc -I$(SRC_DIR) -L$(BIN_DIR) src/tests.c -o bin/$@ -lbloom
 
 obj/%.o: src/%.c
-	$(MKDIRS)
-	$(CC) $(CC_FLAGS) -c -o $@ $<
-
-test: main
-	valgrind --leak-check=full --error-exitcode=1 ./bin/main
+	gcc -fPIC -Wall -Wextra -O2 -g -MMD -c -o $@ $<
 
 -include $(OBJ_FILES:.o=.d)
+
+test: tests
+	LD_LIBRARY_PATH=$(BIN_DIR) valgrind --leak-check=full --error-exitcode=1 ./bin/tests
 
 clean:
 	@${RM} -rf bin obj
 
-.PHONY: all rebuild clean test
+.PHONY: all clean test

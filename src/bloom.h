@@ -3,6 +3,11 @@
 
 #include <stdbool.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 void bloom_add(char *filter,
                size_t filter_bit_count,
                int num_hashes,
@@ -35,4 +40,7 @@ bool bloom_possibly_contains_str_i(char *filter,
                                    int num_hashes,
                                    const char *str);
 
+#ifdef __cplusplus
+}
+#endif
 #endif
