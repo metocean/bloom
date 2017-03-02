@@ -12,7 +12,7 @@ The Python implementation is using Cython to keep the filter running fast.
   
 Parameters used:  
 * 320 entries  
-* hash / k = 20  
+* hashes / k = 20  
 * m / bits = 1100  
 * i7-4790 CPU @ 3.60GHz  
   
