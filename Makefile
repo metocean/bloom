@@ -1,33 +1,31 @@
+# Makefile template for shared library
 
-CC = g++
-DEBUG = -g
-CFLAGS = -Wall -c $(DEBUG)
-LFLAGS = -Wall $(DEBUG)
+SRC_FILES := $(wildcard src/*.c)
+OBJ_FILES := $(addprefix obj/,$(notdir $(SRC_FILES:.c=.o)))
 BASE_DIR=`pwd`
-OBJECT_DIR=$(BASE_DIR)/object
-BUILD_DIR=$(BASE_DIR)/build
-RM=rm
-MKDIR=mkdir
-OBJS = $(OBJECT_DIR)/city.o $(OBJECT_DIR)/spooky.o $(OBJECT_DIR)/bloom.o $(OBJECT_DIR)/main.o
+OBJECT_DIR=$(BASE_DIR)/obj
+MKDIRS := $(shell mkdir -p obj bin)
 
-all: makedirs $(OBJS)
-	$(CC) $(LFLAGS) $(OBJS) -o $(BUILD_DIR)/app
+CC = gcc
+LD_FLAGS := -fPIC -Wall -Wextra
+CC_FLAGS := -fPIC -Wall -Wextra -O2 -g -MMD
 
-$(OBJECT_DIR)/city.o :
-	$(CC) $(CFLAGS) city.c -o $(OBJECT_DIR)/city.o
+all: libbloom.so main
 
-$(OBJECT_DIR)/spooky.o :
-	$(CC) $(CFLAGS) spooky.c -o $(OBJECT_DIR)/spooky.o
+libbloom.so: obj/city.o obj/bloom.o
+	$(MKDIRS)
+	$(CC) $(LD_FLAGS) -shared -o bin/$@ $^
 
-$(OBJECT_DIR)/bloom.o :
-	$(CC) $(CFLAGS) bloom.c -o $(OBJECT_DIR)/bloom.o
+main: $(OBJ_FILES)
+	$(MKDIRS)
+	$(CC) $(LD_FLAGS) -o bin/$@ $^
 
-$(OBJECT_DIR)/main.o :
-	$(CC) $(CFLAGS) main.c -o $(OBJECT_DIR)/main.o
+obj/%.o: src/%.c
+	$(MKDIRS)
+	$(CC) $(CC_FLAGS) -c -o $@ $<
 
-makedirs:
-	$(MKDIR) -p $(OBJECT_DIR)
-	$(MKDIR) -p $(BUILD_DIR)
+-include $(OBJ_FILES:.o=.d)
 
+.PHONY: clean
 clean:
-	$(RM) -rf $(OBJECT_DIR) $(BUILD_DIR)
+	@${RM} -rf bin obj
