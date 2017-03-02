@@ -24,8 +24,12 @@ obj/%.o: src/%.c
 	$(MKDIRS)
 	$(CC) $(CC_FLAGS) -c -o $@ $<
 
+test: main
+	valgrind --leak-check=full --error-exitcode=1 ./bin/main
+
 -include $(OBJ_FILES:.o=.d)
 
-.PHONY: clean
 clean:
 	@${RM} -rf bin obj
+
+.PHONY: all rebuild clean test
