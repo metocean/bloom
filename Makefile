@@ -28,6 +28,6 @@ test: tests
 	LD_LIBRARY_PATH=$(BIN_DIR) valgrind --leak-check=full --error-exitcode=1 ./bin/tests
 
 clean:
-	@${RM} -rf bin obj
+	@rm -rf bin obj
 
 .PHONY: all clean test
